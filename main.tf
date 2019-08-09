@@ -28,8 +28,8 @@ resource "alicloud_vpn_connection" "main" {
   local_subnet        = var.local_subnet
   remote_subnet       = var.remote_subnet
   effect_immediately  = var.effect_immediately
-  ike_config          = var.ike_config
-  ipsec_config        = var.ipsec_config
+  ike_config          = map(var.ike_config)
+  ipsec_config        = map(var.ipsec_config)
 }
 resource "alicloud_cen_instance" "main" {
   provider    = alicloud.europe
