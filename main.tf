@@ -4,7 +4,7 @@ provider "alicloud" {
 }
 provider "alicloud" {
   alias  = "china"
-  region = var.china_region
+  region = var.region_china
 }
 resource "alicloud_vpn_gateway" "main" {
   provider             = alicloud.europe
@@ -18,7 +18,7 @@ resource "alicloud_vpn_gateway" "main" {
 resource "alicloud_vpn_customer_gateway" "main" {
   provider   = alicloud.europe
   name       = "customer_gateway_europe"
-  ip_address = var.customer_gw_ip
+  ip_address = var.customer_gateway_europe
 }
 resource "alicloud_vpn_connection" "main" {
   provider            = alicloud.europe
@@ -42,7 +42,7 @@ resource "alicloud_cen_instance_attachment" "main" {
   child_instance_id        = var.vpc_id
   child_instance_region_id = var.cen_region_id
 }
-resource "alicloud_route_entry" "route" {
+resource "alicloud_route_entry" "main" {
   provider              = alicloud.china
   route_table_id        = alicloud_vpc.vpc.route_table_id
   destination_cidrblock = var.route_entry_dest_cidrblock
