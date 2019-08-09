@@ -37,13 +37,13 @@ resource "alicloud_cen_instance" "main" {
   description = "CEN Instance built with Terraform at ${timestamp()}"
 }
 resource "alicloud_cen_instance_attachment" "main" {
-  provider                 = europe
+  provider                 = alicloud.europe
   instance_id              = alicloud_cen_instance.main.id
   child_instance_id        = var.vpc_id
   child_instance_region_id = var.cen_region_id
 }
 resource "alicloud_route_entry" "route" {
-  provider              = "alicloud.hz"
+  provider              = alicloud.china
   route_table_id        = alicloud_vpc.vpc.route_table_id
   destination_cidrblock = var.route_entry_dest_cidrblock
   nexthop_type          = "Instance"
