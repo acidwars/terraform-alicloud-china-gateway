@@ -36,11 +36,9 @@ variable "effect_immediately" {
 }
 variable "ike_config" {
   description = "The configurations of phase-one negotiation"
-  type        = list
 }
 variable "ipsec_config" {
   description = "The configurations of phase-two negotiation"
-  type        = list
 }
 variable "cen_region_id" {
   description = "The region ID of the child instance to attach"
