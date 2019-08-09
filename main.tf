@@ -32,7 +32,7 @@ resource "alicloud_vpn_connection" "main" {
   ipsec_config        = var.ipsec_config
 }
 resource "alicloud_cen_instance" "main" {
-  provider    = europe
+  provider    = alicloud.europe
   name        = "cen_instance_tf"
   description = "CEN Instance built with Terraform at ${timestamp()}"
 }
@@ -59,6 +59,7 @@ resource "alicloud_cen_route_entry" "main" {
   ]
 }
 resource "alicloud_cen_bandwidth_package" "main" {
+  provider       = alicloud.china
   bandwidth = var.cen_bandwidth_package
   geographic_region_ids = [
     "Europe",
