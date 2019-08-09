@@ -56,4 +56,7 @@ variable "cen_bandwidth" {
   description = "The bandwidth in Mbps of the bandwidth package. Cannot be less than 2Mbps"
   type        = number
 }
+variable "route_table_id" {
+  description = "The route table of the attached VBR or VPC"
+}
 

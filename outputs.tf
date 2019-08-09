@@ -17,7 +17,7 @@ output "route_entry" {
   value = alicloud_route_entry.main
 }
 output "cen_route_entry" {
-  value = alicoud_cen_route_entry.main
+  value = alicloud_cen_route_entry.main
 }
 output "cen_bandwidth_package" {
   value = alicloud_cen_bandwidth_package.main
