@@ -52,4 +52,8 @@ variable "route_entry_dest_cidrblock" {
   description = "The destination CIDR block of the route entry to publish"
   type        = string
 }
+variable "cen_bandwidth" {
+  description = "The bandwidth in Mbps of the bandwidth package. Cannot be less than 2Mbps"
+  type        = number
+}
 
