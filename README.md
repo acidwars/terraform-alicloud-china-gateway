@@ -1,5 +1,5 @@
 
-# Module `.`
+# Module `terraform-alicloud-china-gateway`
 
 Provider Requirements:
 * **alicloud:** (any version)
