@@ -28,8 +28,21 @@ resource "alicloud_vpn_connection" "main" {
   local_subnet        = var.local_subnet
   remote_subnet       = var.remote_subnet
   effect_immediately  = var.effect_immediately
-  ike_config          = map(var.ike_config)
-  ipsec_config        = map(var.ipsec_config)
+  ike_config {
+    ike_auth_alg = "sha256"
+    ike_enc_alg  = "aes256"
+    ike_version  = "ikev2"
+    ike_mode     = "main"
+    ike_lifetime = "86400"
+    psk          = "tbd"
+    ike_pfs      = "group14"
+  }
+  ipsec_config {
+    ipsec_pfs      = "group14"
+    ipsec_enc_alg  = "aes256"
+    ipsec_auth_alg = "sha256"
+    ipsec_lifetime = "3600"
+  }
 }
 resource "alicloud_cen_instance" "main" {
   provider    = alicloud.europe
@@ -50,7 +63,7 @@ resource "alicloud_route_entry" "main" {
   nexthop_id            = alicloud_cen_instance.main.id
 }
 resource "alicloud_cen_route_entry" "main" {
-  provider       = alicloud.china
+  provider       = alicloud.europe
   instance_id    = alicloud_cen_instance.main.id
   route_table_id = var.vpc_route_table_id
   cidr_block     = alicloud_route_entry.main.destination_cidrblock
@@ -59,8 +72,8 @@ resource "alicloud_cen_route_entry" "main" {
   ]
 }
 resource "alicloud_cen_bandwidth_package" "main" {
-  provider       = alicloud.china
-  bandwidth      = var.cen_bandwidth
+  provider  = alicloud.china
+  bandwidth = var.cen_bandwidth
   geographic_region_ids = [
     "Europe",
     "China"
